@@ -33,9 +33,8 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
-    "mongodb": "^2.2.31",
     "mongoose": "^4.12.0",
-    "morgan": "~1.9.0",
+    "morgan": "^1.9.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
@@ -54,9 +53,10 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "start:server": "cross-env PORT=3001 nodemon ./server/index.js",
+    "start:server": "cross-env PORT=3001 nodemon -w ./server ./server/index.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "help": "nodemon -h"
   },
   "proxy": "http://localhost:3001",
   "jest": {
