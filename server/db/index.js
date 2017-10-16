@@ -1,5 +1,6 @@
 const fs = require('fs');
-const MongoClient = require('mongodb').MongoClient;
+const Mongo = require('mongodb');
+const MongoClient = Mongo.MongoClient;
 
 const config = JSON.parse(fs.readFileSync('./.config', { encoding: 'utf8' }));
 const username = encodeURIComponent(config.mongodb.username);
@@ -27,23 +28,6 @@ const db = () => {
   return _db;
 }
 
-const getNextSequence = async (name, res) => {
-  try {
-    const query = [
-      { _id: name },
-      { _id: 1 },
-      { $inc: { seq: 1 } },
-      { new: true }
-    ];
-
-    const result = await db().counters.findAndModify(...query);
-    return result.value.seq;
-  } catch(err) {
-    console.log('gnsError:', err);
-    throw err;
-  }
-}
-
 const disconnectDB = () => _db.close()
 
-module.exports = { connectDB, db, getNextSequence, disconnectDB }
+module.exports = { connectDB, db, disconnectDB, Mongo }
