@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+import API from './util/api';
 
 import './App.css';
 
@@ -12,48 +13,18 @@ class App extends Component {
       name: '',
       quote: '',
     };
-    this.handleInputName = this.handleInputName.bind(this);
-    this.handleInputQuote = this.handleInputQuote.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/users')
-      .then(res => {
-        console.log(res);
-        return res;
-      })
-      .then(res => this.setState({ users: res.data }))
+    API.genres.get().then(res => console.log('Res:', res.data));
+    API.genres.post(10, 20).then(res => console.log('Res:', res.data));
+    API.genres.put().then(res => console.log('Res:', res.data));
+    API.genres.delete().then(res => console.log('Res:', res.data));
   }
 
-  handleInputName(e) {
-    console.log('hit');
-    const { value } = e.target;
-    if (this.state.name !== value) {
-      this.setState({ name: value});
-    }
-  }
-
-  handleInputQuote(e) {
-    const { value } = e.target;
-    if (this.state.quote !== value) {
-      this.setState({ quote: value });
-    }
-  }
-
-  handleSubmit() {
-    axios.post('/quotes', {
-      name: this.state.name,
-      quote: this.state.quote,
-    })
-  }
   render() {
     return (
       <div className="App">
-        <h1>Users</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
-        )}
         <button onClick={this.getQuotes} />
         <button onClick={this.postQuotes} />
         <form onSubmit={this.handleSubmit}>
@@ -67,7 +38,7 @@ class App extends Component {
           <input
             type="text"
             placeholder="quote"
-            name="quote"
+            name="quote" 
             value={this.state.quote}
             onChange={this.handleInputQuote}
           />
