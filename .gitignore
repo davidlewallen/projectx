@@ -1,6 +1,9 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 .config
 
+# editor
+/.vscode
+
 # dependencies
 /node_modules
 
