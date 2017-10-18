@@ -12,8 +12,15 @@ const getUsers = async (id) => {
 }
 
 const postUser = async (data) => {
+  const modData = {
+    ...data,
+    created: Date.now(),
+    updated: null,
+  };
+
   try {
-    const result = await db().user.insertOne(data)
+    const result = await db().user.insertOne(modData);
+
     return result.ops[0];
   } catch (err) {
     console.log(err);
@@ -22,15 +29,20 @@ const postUser = async (data) => {
 }
 
 const updateUser = async (id, data) => {
-  const arguments = [
+  const args = [
     { _id: Mongo.ObjectID(id) },
     { _id: 1},
-    { $set: { ...data } },
+    {
+      $set: {
+        ...data,
+        updated: Date.now(),
+      }
+    },
     { new: true },
   ]
 
   try {
-    const result = await db().user.findAndModify(...arguments);
+    const result = await db().user.findAndModify(...args);
     return result.value
   } catch(err) {
     console.log(err);
