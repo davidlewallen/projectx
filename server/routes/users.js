@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line
 const Joi = require('joi');
 
 const User = require('../models/user');
@@ -9,19 +9,19 @@ router.get('/', (req, res) => {
     .then(result => res.json(result))
     .catch((err) => {
       console.log(err);
-      res.status(500).send('ERROR: Could not get users')
+      res.status(500).send('ERROR: Could not get users');
     });
-})
+});
 
 router.get('/:id', async (req, res) => {
   try {
-    const result = await User.getUsers(req.params.id)
+    const result = await User.getUsers(req.params.id);
     res.json(result);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
-    res.status(500).send(`ERROR: Could not get user with id: ${req.params.id}`)
+    res.status(500).send(`ERROR: Could not get user with id: ${req.params.id}`);
   }
-})
+});
 
 router.post('/', (req, res) => {
   const schema = Joi.object().keys({
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(500).send('ERROR: Could not post user');
     });
-})
+});
 
 router.put('/:id', (req, res) => {
   const schema = Joi.object().keys({
@@ -61,17 +61,21 @@ router.put('/:id', (req, res) => {
     .then(result => res.json(result))
     .catch((err) => {
       console.log(err);
-      res.status(500).send(`ERROR: Could not update user with id: ${req.params.id}`);
+      res
+        .status(500)
+        .send(`ERROR: Could not update user with id: ${req.params.id}`);
     });
-})
+});
 
 router.delete('/:id', (req, res) => {
   User.deleteUser(req.params.id)
     .then(() => res.send(`Deleted user with id: ${req.params.id}`))
     .catch(err => {
       console.log(err);
-      res.status(500).send(`ERROR: Could not delete user with id: ${req.params.id}`)
-    })
-})
+      res
+        .status(500)
+        .send(`ERROR: Could not delete user with id: ${req.params.id}`);
+    });
+});
 
 module.exports = router;

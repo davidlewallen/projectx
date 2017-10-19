@@ -104,6 +104,7 @@
   "devDependencies": {
     "cross-env": "^5.0.5",
     "eslint": "^4.4.1",
+    "eslint-config-node-style-guide": "^3.0.0",
     "eslint-plugin-node": "^5.2.0",
     "nodemon": "^1.12.1"
   }

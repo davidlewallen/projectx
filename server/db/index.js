@@ -6,9 +6,9 @@ const config = JSON.parse(fs.readFileSync('./.config', { encoding: 'utf8' }));
 const username = encodeURIComponent(config.mongodb.username);
 const password = encodeURIComponent(config.mongodb.password);
 
-const uri = `mongodb://${username}:${password}@ds113785.mlab.com:13785/gift-registry`;
+const uri = `mongodb://${username}:${password}@ds113785.mlab.com:13785/gift-registry`; // eslint-disable-line
 
-let _db
+let _db;
 
 const connectDB = (callback) => {
   MongoClient.connect(uri, (err, db) => {
@@ -20,14 +20,14 @@ const connectDB = (callback) => {
       user: userCollection,
       counters: counterCollection,
     };
-    return callback(err)
-  })
-}
+    return callback(err);
+  });
+};
 
 const db = () => {
   return _db;
-}
+};
 
-const disconnectDB = () => _db.close()
+const disconnectDB = () => _db.close();
 
-module.exports = { connectDB, db, disconnectDB, Mongo }
+module.exports = { connectDB, db, disconnectDB, Mongo };

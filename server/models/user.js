@@ -5,11 +5,11 @@ const getUsers = async (id) => {
 
   try {
     return await db().user.find(query).toArray();
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     throw err;
   }
-}
+};
 
 const postUser = async (data) => {
   const modData = {
@@ -24,13 +24,13 @@ const postUser = async (data) => {
     return result.ops[0];
   } catch (err) {
     console.log(err);
-    throw err
+    throw err;
   }
-}
+};
 
 const updateUser = async (id, data) => {
   const args = [
-    { _id: Mongo.ObjectID(id) },
+    { _id: Mongo.ObjectID(id) }, // eslint-disable-line
     { _id: 1},
     {
       $set: {
@@ -39,29 +39,30 @@ const updateUser = async (id, data) => {
       }
     },
     { new: true },
-  ]
+  ];
 
   try {
     const result = await db().user.findAndModify(...args);
-    return result.value
-  } catch(err) {
+
+    return result.value;
+  } catch (err) {
     console.log(err);
-    throw err
+    throw err;
   };
-}
+};
 
 const deleteUser = async (id) => {
   try {
     await db().user.deleteOne({ _id: Mongo.ObjectID(id) });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     throw err;
   };
-}
+};
 
 module.exports = {
   getUsers,
   postUser,
   updateUser,
   deleteUser,
-}
+};
