@@ -20,6 +20,16 @@
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
-    }
+        "valid-typeof": "warn",
+        "space-after-keywords": "off",
+        "object-curly-spacing": 0,
+        "keyword-spacing": [
+            2,
+            {
+                "before": true,
+                "after": true
+            }
+        ]
+    },
+    "extends": "node-style-guide"
 }
