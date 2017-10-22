@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import API from './util/api';
 
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
 
@@ -38,7 +38,7 @@ class App extends Component {
           <input
             type="text"
             placeholder="quote"
-            name="quote" 
+            name="quote"
             value={this.state.quote}
             onChange={this.handleInputQuote}
           />

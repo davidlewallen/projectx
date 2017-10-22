@@ -7,6 +7,6 @@ const API = {
     put: () => axios.put('/api/genres'),
     delete: () => axios.delete('/api/genres'),
   }
-}
+};
 
 export default API;
