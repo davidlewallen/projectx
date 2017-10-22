@@ -114,16 +114,10 @@ module.exports = {
         enforce: 'pre',
         use: [
           {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-
-            },
             loader: require.resolve('eslint-loader'),
           },
         ],
         include: paths.appSrc,
-        exclude: /(server)/,
       },
       {
         // "oneOf" will traverse all following loaders until one will

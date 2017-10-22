@@ -6,7 +6,7 @@ const API = {
     post: (title, genre) => axios.post('/api/genres', { title, genre }),
     put: () => axios.put('/api/genres'),
     delete: () => axios.delete('/api/genres'),
-  }
+  },
 };
 
 export default API;
